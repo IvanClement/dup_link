@@ -141,7 +141,7 @@ for x in set(empreinte.values()):
                                         else:
                                                 print("!!! Error. File "+MemeEmpreinte[y]+" could not be removed !",end='\n')
                                 else:
-                                        print("Dry Run. Duplicated File :"+MemeEmpreinte[y]+" not removed",end='\n')
+                                        print("\tDry Run. Duplicated File :"+MemeEmpreinte[y]+" not removed",end='\n')
                         else:
                                 print("\tHard link to the same file "+MemeEmpreinte[y])
 
