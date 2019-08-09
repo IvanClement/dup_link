@@ -139,7 +139,7 @@ for x in set(empreinte.values()):
                                 else:
                                         print("Dry Run. Duplicated File :"+MemeEmpreinte[y]+" not removed",end='\n')
                         else:
-                                print("\tLien vers le même fichier"+MemeEmpreinte[y])
+                                print("\tHard link to the same file "+MemeEmpreinte[y])
 
 print("Removed Files Count: "+str(RemovedFileCount),end='\n')
 print("SavedBytes: "+str(SavedBytes/1024/1024)+" Mo",end='\n')
