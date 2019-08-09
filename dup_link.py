@@ -146,5 +146,5 @@ for x in set(empreinte.values()):
                                 print("\tHard link to the same file "+MemeEmpreinte[y])
 
 print("Removed Files Count: "+str(RemovedFileCount),end='\n')
-print("SavedBytes: "+str(format(SavedBytes/1024/1024,'.2f')+" Mo",end='\n')
-print("\tAll files size: "+str(format(TailleTotale/1024/1024,'.2f')+ " Mo",end='\n')
+print("SavedBytes: "+str(format(SavedBytes/1024/1024,'.2f'))+" Mo",end='\n')
+print("\tAll files size: "+str(format(TailleTotale/1024/1024,'.2f'))+ " Mo",end='\n')
