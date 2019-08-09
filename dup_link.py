@@ -71,7 +71,9 @@ def getKeysByValue(dictOfElements, valueToFind):
                         listOfKeys.append(item[0])
         return  listOfKeys
 
+# Lets walk through the subdirectories, and inventory all files
 for root, repertoires, fichiers in os.walk(BASE):
+        # We do not want hidden files and directories
         fichiers = [f for f in fichiers if not f[0] == '.']
         repertoires[:] = [d for d in repertoires if not d[0] == '.']
         for fichier in fichiers:
@@ -88,6 +90,7 @@ for root, repertoires, fichiers in os.walk(BASE):
                                 print("\b"*MaxChaineLength,end='',flush=True)
                                 print(Affichage,end='',flush=True)
                                 print("\b"*len(Affichage),end='',flush=True)
+                                # Let's keep all the file size in the taille dictionnary
                                 taille[chaine]=tailleFichier
                                 
                         # elif os.path.islink(root+'/'+fichier):
@@ -99,6 +102,7 @@ print(" "*MaxChaineLength,end='')
 print("\b"*MaxChaineLength,end='',flush=True)
 print("Number of files to compare :"+str(compteur),end='\n')
 
+# How many different file sizes do we have ?
 SameSizeCount=len(set(taille.values()))
 print(str(compteur-SameSizeCount) + ' files out of ' + str(compteur) + ' have the same size',end='\n')
 for x in sorted(set(taille.values())):
