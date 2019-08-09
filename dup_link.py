@@ -125,7 +125,7 @@ for x in set(empreinte.values()):
         MemeEmpreinte=getKeysByValue(empreinte,x)
         if len(MemeEmpreinte) >1:
                 premier=MemeEmpreinte[0]
-                print('\nFichiers identiques au fichier '+premier,end='\n')
+                print('\nFiles identical to the file '+premier,end='\n')
                 for y in range(1,len(MemeEmpreinte)):
                         if not is_hard_link(premier,MemeEmpreinte[y]):
                                 #print('\t'+MemeEmpreinte[y],end='\n')
