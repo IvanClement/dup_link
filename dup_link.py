@@ -1,15 +1,19 @@
 #!/usr/bin/python3
 import os,hashlib,stat,argparse
 #BASE= os.environ['HOME'] +'/dev'
+# We work in the current directory
 BASE=os.getcwd()
+# Intialize some dictionnaries. Variables name are in french for the moment
 taille={}
 empreinte={}
+# Do not deal with files smaller then MinSize
 MinSize=8192
 compteur=0
-DryRun=False
-LinkType='Soft'
 MaxChaineLength=0
 TailleTotale=0
+# Global behavior. Can be changed on CLI
+DryRun=False
+LinkType='Soft'
 
 parser = argparse.ArgumentParser(description='Find duplicated files, and replace those with links')
 parser.add_argument("--dryrun", action='store_true', help="If set, do not modify anything")
