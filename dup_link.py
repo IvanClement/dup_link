@@ -63,9 +63,14 @@ def md5sum(filename):
                         d.update(buf)
                 return d.hexdigest()
 
+# Return a list of keys having value ValueToFind
 def getKeysByValue(dictOfElements, valueToFind):
+        # We initialize the list of keys
         listOfKeys = list()
+        # Make a list of all the dictionnary values
         listOfItems = dictOfElements.items()
+        # For each item, check if it is equal to the value to find.
+        # If so, append it to the list of keys to returne
         for item  in listOfItems:
                 if item[1] == valueToFind:
                         listOfKeys.append(item[0])
@@ -81,7 +86,9 @@ for root, repertoires, fichiers in os.walk(BASE):
                 if os.path.isfile(chaine):
                         tailleFichier=os.path.getsize(chaine)
                         TailleTotale+=tailleFichier
+                        # We do not care of small files, and symoblic links
                         if not os.path.islink(chaine) and tailleFichier > MinSize:
+                                # Number of file to consider
                                 compteur+=1
                                 Affichage=str(compteur)+" "+chaine
                                 if len(Affichage)>MaxChaineLength:
