@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import os,hashlib,stat,argparse,ProgressBar
+import os,hashlib,stat,argparse,tqdm
 #BASE= os.environ['HOME'] +'/dev'
 # We work in the current directory
 BASE=os.getcwd()
@@ -82,7 +82,6 @@ def getKeysByValue(dictOfElements, valueToFind):
                         listOfKeys.append(item[0])
         return  listOfKeys
 
-pbar = ProgressBar()
 # Lets walk through the subdirectories, and inventory all files
 for root, repertoires, fichiers in os.walk(BASE):
         # We do not want hidden files and directories
