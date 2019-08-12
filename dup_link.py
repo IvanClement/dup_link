@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-import os,hashlib,stat,argparse,tqdm
+import os,hashlib,stat,argparse
+from tqdm import tqdm
 #BASE= os.environ['HOME'] +'/dev'
 # We work in the current directory
 BASE=os.getcwd()
