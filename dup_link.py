@@ -112,13 +112,14 @@ for root, repertoires, fichiers in tqdm(os.walk(BASE)):
                         # else:
                         #         print(root+'/'+fichier+' has a size of 0')
 
-print(" "*MaxChaineLength,end='')
-print("\b"*MaxChaineLength,end='',flush=True)
-print("Number of files to compare: "+str(compteur),end='\n')
+#print(" "*MaxChaineLength,end='')
+#print("\b"*MaxChaineLength,end='',flush=True)
+#print("Number of files to compare: "+str(compteur),end='\n')
 
 # How many different file sizes do we have ?
 #SameSizeCount=len(set(taille.values()))
 #print(str(compteur-SameSizeCount) + ' files out of ' + str(compteur) + ' have the same size',end='\n')
+print(\nLet's compute files' hashes)
 for x in tqdm(sorted(set(taille.values()))):
         MemeTaille=list()
         MemeTaille=getKeysByValue(taille,x)
@@ -134,7 +135,7 @@ SavedBytes=0
 RemovedFileCount=0
 HashesCount=len(set(empreinte.values()))
 print(str(HashesCount) + ' hashes ' + str(compteur) + ' to analyze',end='\n')
-for x in tqdm(set(empreinte.values())):
+for x in set(empreinte.values()):
         MemeEmpreinte=list()
         MemeEmpreinte=getKeysByValue(empreinte,x)
         if len(MemeEmpreinte) >1:
