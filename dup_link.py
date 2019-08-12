@@ -14,10 +14,12 @@ TailleTotale=0
 # Global behavior. Can be changed on CLI
 DryRun=False
 LinkType='Soft'
+ReportHL=False
 
 parser = argparse.ArgumentParser(description='Find duplicated files, and replace those with links')
 parser.add_argument("--dryrun", action='store_true', help="If set, do not modify anything")
 parser.add_argument("--hard", action='store_true', help="If set, Creates Hard links instead of soft links")
+parser.add_argument("--reporthl", action='store_true', help="If set, reports hard linkd for the same file")
 
 args = parser.parse_args()
 if args.dryrun:
@@ -27,6 +29,10 @@ if args.dryrun:
 if args.hard:
         print("Hard Links")
         LinkType=True
+
+if args.reporthl:
+        print("Report Hard Links)
+        ReportHL=True
 
 def DeleteFile(filename):
         ## If file exists, delete it ##
@@ -149,7 +155,7 @@ for x in set(empreinte.values()):
                                                 print("!!! Error. File "+MemeEmpreinte[y]+" could not be removed !",end='\n')
                                 else:
                                         print("\tDry Run. No File Removed. Duplicated File :"+MemeEmpreinte[y],end='\n')
-                        else:
+                        elif ReportHL:
                                 print("\tHard link to the same file "+MemeEmpreinte[y])
 
 print("Removed Files Count: "+str(RemovedFileCount),end='\n')
