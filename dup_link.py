@@ -119,7 +119,7 @@ for root, repertoires, fichiers in tqdm(os.walk(BASE)):
 # How many different file sizes do we have ?
 #SameSizeCount=len(set(taille.values()))
 #print(str(compteur-SameSizeCount) + ' files out of ' + str(compteur) + ' have the same size',end='\n')
-print(\nLet's compute files' hashes)
+print("\nLet's compute files'hashes")
 for x in tqdm(sorted(set(taille.values()))):
         MemeTaille=list()
         MemeTaille=getKeysByValue(taille,x)
