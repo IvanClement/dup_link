@@ -87,29 +87,31 @@ for root, repertoires, fichiers in os.walk(BASE):
         # We do not want hidden files and directories
         fichiers = [f for f in fichiers if not f[0] == '.']
         repertoires[:] = [d for d in repertoires if not d[0] == '.']
-        for fichier in pbar(fichiers):
-                chaine=root+'/'+fichier
-                if os.path.isfile(chaine):
-                        tailleFichier=os.path.getsize(chaine)
-                        TailleTotale+=tailleFichier
-                        # We do not care of small files, and symoblic links
-                        if not os.path.islink(chaine) and tailleFichier > MinSize:
-                                # Number of file to consider
-                                compteur+=1
-                                Affichage=str(compteur)+" "+chaine
-                                if len(Affichage)>MaxChaineLength:
-                                        MaxChaineLength=len(Affichage)
-                                print(" "*MaxChaineLength,end='')
-                                print("\b"*MaxChaineLength,end='',flush=True)
-                                print(Affichage,end='',flush=True)
-                                print("\b"*len(Affichage),end='',flush=True)
-                                # Let's keep all the file size in the taille dictionnary
-                                taille[chaine]=tailleFichier
-                                
-                        # elif os.path.islink(root+'/'+fichier):
-                        #         print(root+'/'+fichier+' is a link')
-                        # else:
-                        #         print(root+'/'+fichier+' has a size of 0')
+        with tqdm(total=len(fichiers), desc="Getting files size", bar_format="{l_bar}{bar} [ time left: {remaining} ]") as pbar:
+                for fichier in fichiers:
+                        chaine=root+'/'+fichier
+                        if os.path.isfile(chaine):
+                                tailleFichier=os.path.getsize(chaine)
+                                TailleTotale+=tailleFichier
+                                # We do not care of small files, and symoblic links
+                                if not os.path.islink(chaine) and tailleFichier > MinSize:
+                                        # Number of file to consider
+                                        compteur+=1
+                                        Affichage=str(compteur)+" "+chaine
+                                        # if len(Affichage)>MaxChaineLength:
+                                        #         MaxChaineLength=len(Affichage)
+                                        # print(" "*MaxChaineLength,end='')
+                                        # print("\b"*MaxChaineLength,end='',flush=True)
+                                        # print(Affichage,end='',flush=True)
+                                        # print("\b"*len(Affichage),end='',flush=True)
+                                        # Let's keep all the file size in the taille dictionnary
+                                        taille[chaine]=tailleFichier
+                                        pbar.update(1)
+                                        
+                                # elif os.path.islink(root+'/'+fichier):
+                                #         print(root+'/'+fichier+' is a link')
+                                # else:
+                                #         print(root+'/'+fichier+' has a size of 0')
 
 print(" "*MaxChaineLength,end='')
 print("\b"*MaxChaineLength,end='',flush=True)
