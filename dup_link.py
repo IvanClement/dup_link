@@ -31,7 +31,7 @@ if args.hard:
         LinkType=True
 
 if args.reporthl:
-        print("Report Hard Links)
+        print("Report Hard Links")
         ReportHL=True
 
 def DeleteFile(filename):
