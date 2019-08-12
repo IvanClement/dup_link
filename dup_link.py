@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import os,hashlib,stat,argparse
+import os,hashlib,stat,argparse,ProgressBar
 #BASE= os.environ['HOME'] +'/dev'
 # We work in the current directory
 BASE=os.getcwd()
@@ -82,12 +82,13 @@ def getKeysByValue(dictOfElements, valueToFind):
                         listOfKeys.append(item[0])
         return  listOfKeys
 
+pbar = ProgressBar()
 # Lets walk through the subdirectories, and inventory all files
 for root, repertoires, fichiers in os.walk(BASE):
         # We do not want hidden files and directories
         fichiers = [f for f in fichiers if not f[0] == '.']
         repertoires[:] = [d for d in repertoires if not d[0] == '.']
-        for fichier in fichiers:
+        for fichier in pbar(fichiers):
                 chaine=root+'/'+fichier
                 if os.path.isfile(chaine):
                         tailleFichier=os.path.getsize(chaine)
@@ -113,7 +114,7 @@ for root, repertoires, fichiers in os.walk(BASE):
 
 print(" "*MaxChaineLength,end='')
 print("\b"*MaxChaineLength,end='',flush=True)
-print("Number of files to compare :"+str(compteur),end='\n')
+print("Number of files to compare: "+str(compteur),end='\n')
 
 # How many different file sizes do we have ?
 SameSizeCount=len(set(taille.values()))
