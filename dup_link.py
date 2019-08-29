@@ -109,20 +109,13 @@ for root, repertoires, fichiers in tqdm(os.walk(BASE)):
                                 compteur+=1
                                 taille[chaine]=tailleFichier
                                         
-#print(" "*MaxChaineLength,end='')
-#print("\b"*MaxChaineLength,end='',flush=True)
-#print("Number of files to compare: "+str(compteur),end='\n')
-
-# How many different file sizes do we have ?
-#SameSizeCount=len(set(taille.values()))
-#print(str(compteur-SameSizeCount) + ' files out of ' + str(compteur) + ' have the same size',end='\n')
 print("\nLet's compute files'hashes")
 for x in tqdm(sorted(set(taille.values()))):
-        MemeTaille=list()
-        MemeTaille=getKeysByValue(taille,x)
-        if len(MemeTaille) >1:
-                for fichier in MemeTaille:
-                        #empreinte[fichier]=str(sha256sum(fichier))+'.'+str(MemeTaille)
+        SameSize=list()
+        SameSize=getKeysByValue(taille,x)
+        if len(SameSize) >1:
+                for fichier in SameSize:
+                        #empreinte[fichier]=str(sha256sum(fichier))+'.'+str(SameSize)
                         #Lempreinte=str(md5sum(fichier))+'finmd5'+str(x)
                         Lempreinte=str(md5sum(fichier))
                         empreinte[fichier]=Lempreinte
