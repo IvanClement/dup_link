@@ -35,8 +35,9 @@ if args.reporthl:
         print("Report Hard Links")
         ReportHL=True
 
-def DeleteFile(filename):
+def OldDeleteFile(filename):
         ## If file exists, delete it ##
+        ## To be removed ##
         if os.path.isfile(filename):
                 os.remove(filename)
                 if os.path.isfile(filename):
@@ -45,6 +46,15 @@ def DeleteFile(filename):
                         return True
         else:    ## Show an error ##
                 print("Error: %s file not found" % filename)
+
+def DeleteFile(filename):
+        ## If file exists, delete it ##
+        try:
+                os.remove(filename)
+                return True
+        except:    ## Show an error ##
+                print("Error: %s file could not be removed " % filename)
+                return False
 
 def is_hard_link(filename, other):
         s1 = os.stat(filename)
@@ -97,21 +107,8 @@ for root, repertoires, fichiers in tqdm(os.walk(BASE)):
                         if not os.path.islink(chaine) and tailleFichier > MinSize:
                                 # Number of file to consider
                                 compteur+=1
-                                # Affichage=str(compteur)+" "+chaine
-                                # if len(Affichage)>MaxChaineLength:
-                                #         MaxChaineLength=len(Affichage)
-                                # print(" "*MaxChaineLength,end='')
-                                # print("\b"*MaxChaineLength,end='',flush=True)
-                                # print(Affichage,end='',flush=True)
-                                # print("\b"*len(Affichage),end='',flush=True)
-                                # Let's keep all the file size in the taille dictionnary
                                 taille[chaine]=tailleFichier
                                         
-                        # elif os.path.islink(root+'/'+fichier):
-                        #         print(root+'/'+fichier+' is a link')
-                        # else:
-                        #         print(root+'/'+fichier+' has a size of 0')
-
 #print(" "*MaxChaineLength,end='')
 #print("\b"*MaxChaineLength,end='',flush=True)
 #print("Number of files to compare: "+str(compteur),end='\n')
