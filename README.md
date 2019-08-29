@@ -5,3 +5,6 @@ One of my very first python script.
 Still ugly.
 
 Needs to be commented....
+
+tqdm module required:
+pip3 install tqdm
