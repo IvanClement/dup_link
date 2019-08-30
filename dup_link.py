@@ -35,25 +35,12 @@ if args.reporthl:
         print("Report Hard Links")
         ReportHL=True
 
-def OldDeleteFile(filename):
-        ## If file exists, delete it ##
-        ## To be removed ##
-        if os.path.isfile(filename):
-                os.remove(filename)
-                if os.path.isfile(filename):
-                        return False
-                else:
-                        return True
-        else:    ## Show an error ##
-                print("Error: %s file not found" % filename)
-
 def DeleteFile(filename):
         ## If file exists, delete it ##
         try:
                 os.remove(filename)
                 return True
         except:    ## Show an error ##
-                print("Error: %s file could not be removed " % filename)
                 return False
 
 def is_hard_link(filename, other):
