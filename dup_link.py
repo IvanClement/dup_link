@@ -6,7 +6,7 @@ from tqdm import tqdm
 BASE=os.getcwd()
 # Intialize some dictionnaries. Variables name are in french for the moment
 taille={}
-empreinte={}
+footprint={}
 # Do not deal with files smaller then MinSize
 MinSize=8192
 compteur=0
@@ -115,19 +115,19 @@ for x in tqdm(sorted(set(taille.values()))):
         SameSize=getKeysByValue(taille,x)
         if len(SameSize) >1:
                 for fichier in SameSize:
-                        #empreinte[fichier]=str(sha256sum(fichier))+'.'+str(SameSize)
-                        #Lempreinte=str(md5sum(fichier))+'finmd5'+str(x)
-                        Lempreinte=str(md5sum(fichier))
-                        empreinte[fichier]=Lempreinte
-                        #print(fichier+': '+Lempreinte,end='\n')
+                        #footprint[fichier]=str(sha256sum(fichier))+'.'+str(SameSize)
+                        #TheFootPrint=str(md5sum(fichier))+'finmd5'+str(x)
+                        TheFootPrint=str(md5sum(fichier))
+                        footprint[fichier]=TheFootPrint
+                        #print(fichier+': '+TheFootPrint,end='\n')
 
 SavedBytes=0
 RemovedFileCount=0
-HashesCount=len(set(empreinte.values()))
+HashesCount=len(set(footprint.values()))
 print(str(HashesCount) + ' hashes ' + str(compteur) + ' to analyze',end='\n')
-for x in set(empreinte.values()):
+for x in set(footprint.values()):
         MemeEmpreinte=list()
-        MemeEmpreinte=getKeysByValue(empreinte,x)
+        MemeEmpreinte=getKeysByValue(footprint,x)
         if len(MemeEmpreinte) >1:
                 premier=MemeEmpreinte[0]
                 print('\nFiles identical to the file '+premier,end='\n')
