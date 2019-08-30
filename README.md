@@ -19,6 +19,6 @@ requirements:
 Installation:
 * download dup_link.py
 * execute following commands:
-    $ sudo mv dup_link.sh /usr/local/bin
-    $ sudo chown root:root /usr/local/bin/dup_link.sh
-    $ sudo chmod +x /usr/local/bin/dup_link.sh
+    - sudo mv dup_link.sh /usr/local/bin
+    - sudo chown root:root /usr/local/bin/dup_link.sh
+    - sudo chmod +x /usr/local/bin/dup_link.sh
