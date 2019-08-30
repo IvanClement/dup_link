@@ -7,7 +7,7 @@ Still ugly.
 
 Needs to be commented....
 
-requirements:
+# requirements:
 * packages:
     - python3
     - python3-pip
@@ -16,7 +16,7 @@ requirements:
     or
     - pip3 install --user tqdm
 
-Installation:
+# Installation:
 * download dup_link.py
 * execute following commands:
     - sudo mv dup_link.sh /usr/local/bin
