@@ -78,7 +78,7 @@ def getKeysByValue(dictOfElements, valueToFind):
         for item  in listOfItems:
                 if item[1] == valueToFind:
                         listOfKeys.append(item[0])
-        return  listOfKeys
+        return listOfKeys
 
 # Lets walk through the subdirectories, and inventory all files
 for root, repertoires, fichiers in tqdm(os.walk(BASE)):
@@ -109,7 +109,8 @@ RemovedFileCount=0
 HashesCount=len(set(footprint.values()))
 print(str(HashesCount) + ' hashes ' + str(compteur) + ' to analyze',end='\n')
 for x in set(footprint.values()):
-        SameFootPrint=list()
+#        SameFootPrint=list()
+        SameFootPrint=()
         SameFootPrint=getKeysByValue(footprint,x)
         if len(SameFootPrint) >1:
                 premier=SameFootPrint[0]
