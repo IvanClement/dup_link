@@ -19,7 +19,7 @@ ReportHL=False
 
 parser = argparse.ArgumentParser(description='Find duplicated files, and replace those with links')
 parser.add_argument("--dryrun", action='store_true', help="If set, do not modify anything")
-parser.add_argument("--soft", action='store_true', help="If set, Creates Hard links instead of soft links")
+parser.add_argument("--soft", action='store_true', help="If set, Creates Soft links instead of Hard links")
 parser.add_argument("--reporthl", action='store_true', help="If set, reports hard links for the same file")
 
 args = parser.parse_args()
