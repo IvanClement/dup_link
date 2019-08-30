@@ -109,7 +109,6 @@ RemovedFileCount=0
 HashesCount=len(set(footprint.values()))
 print(str(HashesCount) + ' hashes ' + str(compteur) + ' to analyze',end='\n')
 for x in set(footprint.values()):
-#        SameFootPrint=list()
         SameFootPrint=()
         SameFootPrint=getKeysByValue(footprint,x)
         if len(SameFootPrint) >1:
