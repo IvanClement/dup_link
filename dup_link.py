@@ -14,22 +14,22 @@ MaxChaineLength=0
 TailleTotale=0
 # Global behavior. Can be changed on CLI
 DryRun=False
-LinkType='Soft'
+LinkType='Hard'
 ReportHL=False
 
 parser = argparse.ArgumentParser(description='Find duplicated files, and replace those with links')
 parser.add_argument("--dryrun", action='store_true', help="If set, do not modify anything")
-parser.add_argument("--hard", action='store_true', help="If set, Creates Hard links instead of soft links")
-parser.add_argument("--reporthl", action='store_true', help="If set, reports hard linkd for the same file")
+parser.add_argument("--soft", action='store_true', help="If set, Creates Hard links instead of soft links")
+parser.add_argument("--reporthl", action='store_true', help="If set, reports hard links for the same file")
 
 args = parser.parse_args()
 if args.dryrun:
     print("Dry Run")
     DryRun=True
 
-if args.hard:
-        print("Hard Links")
-        LinkType=True
+if args.soft:
+        print("Soft Links")
+        LinkType='Soft'
 
 if args.reporthl:
         print("Report Hard Links")
@@ -142,7 +142,11 @@ for x in set(empreinte.values()):
                                                 if LinkType=='Soft':
                                                         os.symlink(premier,MemeEmpreinte[y])
                                                 else:
-                                                        os.link(premier,MemeEmpreinte[y])
+                                                        try:
+                                                                os.link(premier,MemeEmpreinte[y])
+                                                        except:
+                                                                print("Create symlink instead of hard link")
+                                                                os.symlink(premier,MemeEmpreinte[y])
                                         else:
                                                 print("!!! Error. File "+MemeEmpreinte[y]+" could not be removed !",end='\n')
                                 else:
