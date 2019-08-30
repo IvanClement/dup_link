@@ -103,8 +103,9 @@ for x in tqdm(sorted(set(taille.values()))):
         if len(SameSize) >1:
                 for fichier in SameSize:
                         #TheFootPrint=str(md5sum(fichier))
-                        TheFootPrint=str(sha256sum(fichier))
-                        footprint[fichier]=TheFootPrint
+                        #TheFootPrint=str(sha256sum(fichier))
+                        #footprint[fichier]=TheFootPrint
+                        footprint[fichier]=str(md5sum(fichier))
                         #print(fichier+': '+TheFootPrint,end='\n')
 
 SavedBytes=0
