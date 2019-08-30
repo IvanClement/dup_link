@@ -113,33 +113,32 @@ RemovedFileCount=0
 HashesCount=len(set(footprint.values()))
 print(str(HashesCount) + ' hashes ' + str(compteur) + ' to analyze',end='\n')
 for x in set(footprint.values()):
-        MemeEmpreinte=list()
-        MemeEmpreinte=getKeysByValue(footprint,x)
-        if len(MemeEmpreinte) >1:
-                premier=MemeEmpreinte[0]
+        SameFootPrint=list()
+        SameFootPrint=getKeysByValue(footprint,x)
+        if len(SameFootPrint) >1:
+                premier=SameFootPrint[0]
                 print('\nFiles identical to the file '+premier,end='\n')
-                for y in range(1,len(MemeEmpreinte)):
-                        if not is_hard_link(premier,MemeEmpreinte[y]):
-                                #print('\t'+MemeEmpreinte[y],end='\n')
+                for y in range(1,len(SameFootPrint)):
+                        if not is_hard_link(premier,SameFootPrint[y]):
                                 SavedBytes+=taille[premier]
                                 RemovedFileCount+=1
                                 if not DryRun:
-                                        print("Remove and link "+MemeEmpreinte[y]+" to "+premier)
-                                        if DeleteFile(MemeEmpreinte[y]):
+                                        print("Remove and link "+SameFootPrint[y]+" to "+premier)
+                                        if DeleteFile(SameFootPrint[y]):
                                                 if LinkType=='Soft':
-                                                        os.symlink(premier,MemeEmpreinte[y])
+                                                        os.symlink(premier,SameFootPrint[y])
                                                 else:
                                                         try:
-                                                                os.link(premier,MemeEmpreinte[y])
+                                                                os.link(premier,SameFootPrint[y])
                                                         except:
                                                                 print("Create symlink instead of hard link")
-                                                                os.symlink(premier,MemeEmpreinte[y])
+                                                                os.symlink(premier,SameFootPrint[y])
                                         else:
-                                                print("!!! Error. File "+MemeEmpreinte[y]+" could not be removed !",end='\n')
+                                                print("!!! Error. File "+SameFootPrint[y]+" could not be removed !",end='\n')
                                 else:
-                                        print("\tDry Run. No File Removed. Duplicated File :"+MemeEmpreinte[y],end='\n')
+                                        print("\tDry Run. No File Removed. Duplicated File :"+SameFootPrint[y],end='\n')
                         elif ReportHL:
-                                print("\tHard link to the same file "+MemeEmpreinte[y])
+                                print("\tHard link to the same file "+SameFootPrint[y])
 
 print("Removed Files Count: "+str(RemovedFileCount),end='\n')
 print("SavedBytes: "+str(format(SavedBytes/1024/1024,'.2f'))+" Mo",end='\n')
