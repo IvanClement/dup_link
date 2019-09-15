@@ -112,7 +112,8 @@ for x in set(footprint.values()):
         SameFootPrint=()
         SameFootPrint=getKeysByValue(footprint,x)
         IdenticalFilesCount=len(SameFootPrint)
-        if not ReportLinks:
+        if not ReportLinks and IdenticalFilesCount >1:
+                premier=SameFootPrint[0]
                 for y in range(1,IdenticalFilesCount):
                         if is_hard_link(premier,SameFootPrint[y]):
                                 IdenticalFilesCount-=1
