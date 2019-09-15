@@ -111,7 +111,12 @@ print(str(HashesCount) + ' hashes ' + str(compteur) + ' to analyze',end='\n')
 for x in set(footprint.values()):
         SameFootPrint=()
         SameFootPrint=getKeysByValue(footprint,x)
-        if len(SameFootPrint) >1:
+        IdenticalFilesCount=len(SameFootPrint)
+        if not ReportLinks:
+                for y in range(1,IdenticalFilesCount):
+                        if is_hard_link(premier,SameFootPrint[y]):
+                                IdenticalFilesCount-=1
+        if IdenticalFilesCount >1:
                 premier=SameFootPrint[0]
                 print('\nFiles identical to the file '+premier,end='\n')
                 for y in range(1,len(SameFootPrint)):
